@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Array Elements</title>
+</head>
+<body>
+    <h1>Array Elements</h1>
+    <ul id="outputList"></ul>
+
+    <script>
+        // Define an array of elements
+        var fruits = ["Apple", "Banana", "Cherry", "Date", "Grapes"];
+
+        // Function to display array elements
+        function displayArray() {
+            var outputList = document.getElementById("outputList");
+            outputList.innerHTML = ""; // Clear previous content
+
+            // Loop through the array and create list items for each element
+            for (var i = 0; i < fruits.length; i++) {
+                var listItem = document.createElement("li");
+                listItem.textContent = fruits[i];
+                outputList.appendChild(listItem);
+            }
+        }
+
+        // Call the displayArray function to display the elements
+        displayArray();
+    </script>
+</body>
+</html>

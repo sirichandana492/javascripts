@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+</head>
+<body>
+    <h1>Form Validation</h1>
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <label for="username">Username (at least 8 characters):</label>
+        <input type="text" id="username" name="username" required minlength="8"><br>
+
+        <label for="password">Password (at least 8 characters):</label>
+        <input type="password" id="password" name="password" required minlength="8"><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8"><br>
+
+        <label for="phoneNumber">Phone Number (at most 10 digits):</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{1,10}"><br>
+
+        <label for="pinCode">Pin Code (at most 6 digits):</label>
+        <input type="text" id="pinCode" name="pinCode" pattern="[0-9]{1,6}"><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="errorMessages"></p>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            var pinCode = document.getElementById('pinCode').value;
+            var errorMessages = [];
+
+            if (username.length < 8) {
+                errorMessages.push("Username should be at least 8 characters.");
+            }
+
+            if (password.length < 8) {
+                errorMessages.push("Password should be at least 8 characters.");
+            }
+
+            if (password !== confirmPassword) {
+                errorMessages.push("Passwords do not match.");
+            }
+
+            if (phoneNumber.length > 10) {
+                errorMessages.push("Phone number should be at most 10 digits.");
+            }
+
+            if (pinCode.length > 6) {
+                errorMessages.push("Pin code should be at most 6 digits.");
+            }
+
+            var errorDisplay = document.getElementById('errorMessages');
+
+            if (errorMessages.length > 0) {
+                errorDisplay.innerHTML = errorMessages.join("<br>");
+                return false; // Prevent form submission
+            } else {
+                errorDisplay.innerHTML = "";
+                return true; // Allow form submission
+            }
+        }
+    </script>
+</body>
+</html>
